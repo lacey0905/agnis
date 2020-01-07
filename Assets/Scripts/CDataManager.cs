@@ -27,6 +27,10 @@ public class CDataManager : MonoBehaviour
     {
         myGold += gold;
     }
+    public void SubMyGold(double gold)
+    {
+        myGold -= gold;
+    }
 
     // 루비
     public int GetMyRuby()
