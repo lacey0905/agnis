@@ -69,7 +69,6 @@ public class CDataManager : MonoBehaviour
         몬스터 스탭    
 
         탭 업글
-        #장비 번호 + 업
     */
 
 }
