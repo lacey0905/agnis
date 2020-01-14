@@ -1,22 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CDataManager : MonoBehaviour
 {
     private double myGold;
     private int myRuby;
+    
     private int currentStage;
+    private int startStage = 1;
+    
     private int currentMonsterStep;
     private int maxMonsterStep;
+
     private int myTapUpgradeLevel;
+    private int startMyTapLevel = 1;
 
     public static CDataManager instance;
+
+    public Text UITextMyGold;
+    public Text UITextCurrentStage;
 
     private void Awake()
     {
         CDataManager.instance = this;
+
+        // 시작 할 때 셋팅
+        currentStage = startStage;
+        myTapUpgradeLevel = startMyTapLevel;
+
+        UITextCurrentStage.text = GetCurrentStage() + "";
+
     }
+
 
     // 골드
     public double GetMyGold()
@@ -26,10 +43,16 @@ public class CDataManager : MonoBehaviour
     public void AddMyGold(double gold)
     {
         myGold += gold;
+
+        // 골드 UI 갱신
+        UITextMyGold.text = GetMyGold() + "";
     }
     public void SubMyGold(double gold)
     {
         myGold -= gold;
+
+        // 골드 UI 갱신
+        UITextMyGold.text = GetMyGold() + "";
     }
 
     // 루비
@@ -50,6 +73,8 @@ public class CDataManager : MonoBehaviour
     public void SetCurrentStage(int stage)
     {
         currentStage = stage;
+
+        UITextCurrentStage.text = GetCurrentStage() + "";
     }
 
     // 업그레이드
