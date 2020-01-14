@@ -30,7 +30,7 @@ public class CTabUpgrade : MonoBehaviour
     public void SetUpgradeMultiple(int multiple)
     {
         upgradeMultiple = multiple;
-        upgradeCost = upgradeCost * upgradeMultiple;
+        upgradeCost = upgradeCost * (double) upgradeMultiple;
 
         // UI 갱신
     }

@@ -62,6 +62,7 @@ public class CDataManager : MonoBehaviour
         myTapUpgradeLevel = level;
     }
 
+
     /*
         골드
         루비
