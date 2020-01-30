@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CTabUpgrade : MonoBehaviour
 {
 
-    private float upgradeCost = 6f;
+    private float upgradeCost;
     private int upgradeMultiple;
 
     public Text UIUpgradeCost;
@@ -16,8 +16,7 @@ public class CTabUpgrade : MonoBehaviour
     private void Start()
     {
         int currentTapLevel = CDataManager.instance.GetMyTapUpgradeLevel();
-        upgradeCost = upgradeCost * currentTapLevel * 3.14f;
-
+        upgradeCost = currentTapLevel * 3.14f;
         UIUpgradeCost.text = upgradeCost + "";
     }
 
@@ -28,7 +27,7 @@ public class CTabUpgrade : MonoBehaviour
         if (upgradeCost <= myGold)
         {
             int currentTapLevel = CDataManager.instance.GetMyTapUpgradeLevel();
-            upgradeCost = upgradeCost * currentTapLevel * 3.14f;
+            upgradeCost = currentTapLevel * 3.14f;
 
             // 레벨 1 증가
             currentTapLevel++;
@@ -39,7 +38,7 @@ public class CTabUpgrade : MonoBehaviour
         }
 
         // UI 갱신
-        UIUpgradeCost.text = upgradeCost + "";
+        UIUpgradeCost.text = Mathf.Round(upgradeCost) + "";
 
     }
 

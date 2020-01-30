@@ -26,7 +26,7 @@ public class CGameManager : MonoBehaviour
         // 몬스터가 Die 되면 실행
         if((int)monsterManager.monsterState == 2)
         {
-            Debug.Log("몬스터 Die");
+            //Debug.Log("몬스터 Die");
 
             int currentStage = CDataManager.instance.GetCurrentStage();
 
@@ -45,21 +45,26 @@ public class CGameManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // 몬스터가 Alive 일때만
-            if((int)monsterManager.monsterState == 1)
-            {
-                int myTabLevel = CDataManager.instance.GetMyTapUpgradeLevel();
-
-                // 임시 데미지 공식
-                float myTabDamage = myTabLevel * 3.14f;
-                monsterManager.Attack(myTabDamage);
-                
-            }
-
-            // 공격 애니메이션 : 몹이 없어도 공격은 눌리게
+            
 
         }
 
+    }
+
+    public void ScreenTap()
+    {
+        // 몬스터가 Alive 일때만
+        if ((int)monsterManager.monsterState == 1)
+        {
+            int myTabLevel = CDataManager.instance.GetMyTapUpgradeLevel();
+
+            // 임시 데미지 공식
+            float myTabDamage = myTabLevel * 3.14f;
+            monsterManager.Attack(myTabDamage);
+
+        }
+
+        // 공격 애니메이션 : 몹이 없어도 공격은 눌리게
     }
 
 }
