@@ -6,6 +6,28 @@ using UnityEngine.UI;
 
 public class CMonsterManager : MonoBehaviour
 {
+
+    public static CMonsterManager instance;
+
+
+    private void Awake()
+    {
+        CMonsterManager.instance = this;
+    }
+
+
+    private void OnEnable()
+    {
+        CGameManager.handler += this.MonsterTest;
+    }
+
+    public void MonsterTest()
+    {
+        Debug.Log("몬스터에서 실행 TEST");
+    }
+
+
+     
     private float maxMonsterHealth;
     private float currentMonsterHealth;
 

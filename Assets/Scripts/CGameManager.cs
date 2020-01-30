@@ -6,17 +6,37 @@ using UnityEngine.UI;
 public class CGameManager : MonoBehaviour
 {
 
+
     public CMonsterManager monsterManager;
     public CGoldManager goldManager;
 
     private int stageIncrease = 1;
 
-    void Start()
+
+    public delegate void Handler();
+    public static event Handler handler;
+
+    public static CGameManager instance;
+
+    private void Awake()
     {
+        CGameManager.instance = this;
+    }
+
+    private void test()
+    {
+        handler();
+    }
+
+    void Start()
+    {  
 
         // 게임 시작 하기
         // 몬스터 생성
         monsterManager.Create();
+
+
+        test();
 
     }
 
