@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class CDataManager : MonoBehaviour
 {
-    [SerializeField]
-    private float myGold;
+    private double myGold;
     private int myRuby;
     
     private int currentStage;
@@ -15,7 +14,6 @@ public class CDataManager : MonoBehaviour
     private int currentMonsterStep;
     private int maxMonsterStep;
 
-    [SerializeField]
     private int myTapUpgradeLevel;
     private int startMyTapLevel = 1;
 
@@ -38,18 +36,18 @@ public class CDataManager : MonoBehaviour
 
 
     // 골드
-    public float GetMyGold()
+    public double GetMyGold()
     {
-        return Mathf.Round(myGold);
+        return myGold;
     }
-    public void AddMyGold(float gold)
+    public void AddMyGold(double gold)
     {
         myGold += gold;
 
         // 골드 UI 갱신
         UITextMyGold.text = GetMyGold() + "";
     }
-    public void SubMyGold(float gold)
+    public void SubMyGold(double gold)
     {
         myGold -= gold;
 

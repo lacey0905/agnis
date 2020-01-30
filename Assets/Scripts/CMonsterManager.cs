@@ -45,7 +45,7 @@ public class CMonsterManager : MonoBehaviour
 
     public void Create()
     {
-        //Debug.Log("몬스터 새로 생성");
+        Debug.Log("몬스터 새로 생성");
 
         monsterState = MonsterStage.Alive;
 
