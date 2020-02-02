@@ -18,4 +18,5 @@ public class DataController : MonoBehaviour
     public int CurrentWave { get; set; }
     public int CurrentStage { get; set; }
 
+
 }

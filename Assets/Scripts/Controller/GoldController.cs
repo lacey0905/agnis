@@ -22,4 +22,9 @@ public class GoldController : MonoBehaviour
     }
 
 
+    public void DrawGold()
+    {
+
+    }
+
 }

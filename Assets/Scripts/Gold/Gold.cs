@@ -12,12 +12,12 @@ public class Gold : MonoBehaviour
         
         // 일정 시간 지나면 자동 획득
 
-
     }
 
     public void DoWallet()
     {
         DataController.instance.PlayerGold = this.Money;
+        GoldController.instance.DrawGold();
     }
 
 }

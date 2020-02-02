@@ -16,6 +16,9 @@ public class StageController : MonoBehaviour
 
     public void MonsterSpawn(int stage)
     {
+
+        // 보스 인지 아닌지 체크
+
         string newName = "테스트";
         double newHp = this.GetStageBaseHP(stage);
         fieldMonster = new Monster(newHp, newName);
@@ -46,16 +49,19 @@ public class StageController : MonoBehaviour
 
 
             GoldController.instance.SpawnGold(GetStageBaseGold(stage));
-
-
             DataController.instance.CurrentWave = newWave;
 
             MonsterSpawn(stage);
+            MonsterController.instance.SpawnFieldMonster();
+
         }
     }
 
     public void MoveToNextStage()
     {
+
+        // 5탄마다 체크해서 테마 넘기기
+
         DataController.instance.CurrentWave = 1;
         DataController.instance.CurrentStage = DataController.instance.CurrentStage + 1;
         MonsterSpawn(DataController.instance.CurrentStage);

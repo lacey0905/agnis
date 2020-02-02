@@ -13,9 +13,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void doAttack(double damage)
+    public void DoAttack(double damage)
     {
         StageController.instance.MonsterDamage(damage);
+    }
+
+
+    public void PlayerLevelUp(int levelUp)
+    {
+        DataController.instance.PlayerLevel += levelUp;
+
+
     }
 
 
