@@ -16,8 +16,14 @@ public class GoldController : MonoBehaviour
 
     public void SpawnGold(double gold)
     {
-        Gold fieldGold = Instantiate(goldPrefab, transform.position, Quaternion.identity) as Gold;
-        fieldGold.Money = gold;
+        //Gold fieldGold = Instantiate(goldPrefab, transform.position, Quaternion.identity) as Gold;
+        //fieldGold.Money = gold;
+
+        double myGold = DataController.instance.PlayerGold;
+        myGold += gold;
+
+        DataController.instance.PlayerGold = myGold;
+
     }
 
 }

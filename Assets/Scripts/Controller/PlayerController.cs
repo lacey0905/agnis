@@ -16,14 +16,19 @@ public class PlayerController : MonoBehaviour
     public void DoAttack(Vector3 touchPosition)
     {
         double currentDamage = this.GetAttackDamageByLevel(DataController.instance.PlayerLevel);
-        StageController.instance.MonsterDamage(currentDamage);
+        StageController.instance.MonsterDamage(currentDamage * 10d);
     }
 
 
     public void PlayerLevelUp(int iLevel)
     {
-        DataController.instance.PlayerLevel += iLevel;
-        DataController.instance.PlayerGold -= GetUpgradeCostByLevel(iLevel);
+        double cost = GetUpgradeCostByLevel(iLevel);
+        double myGold = DataController.instance.PlayerGold;
+        if(myGold >= cost)
+        {
+            DataController.instance.PlayerLevel += iLevel;
+            DataController.instance.PlayerGold -= GetUpgradeCostByLevel(iLevel);
+        }
     }
 
     public void UpdatePlayerStats(bool iNeedToCallDelegate = true)
@@ -36,15 +41,13 @@ public class PlayerController : MonoBehaviour
     // 레벨업 할 때 얻는 데미지
     private double GetAttackDamageByLevel(int iLevel)
     {
-        return 0;
+        return (double)iLevel * System.Math.Pow((double)1.05f, (double)iLevel);
     }
 
     public double GetUpgradeCostByLevel(int iLevel)
     {
-        //double num = (double)Math.Min(ServerVarsModel.tapCostSlowDownLevel, ServerVarsModel.initialPlayerCostOffset + iLevel) * Math.Pow((double)ServerVarsModel.playerUpgradeBase, (double)iLevel);
-        //double a = num * (1.0 + PlayerModel.instance.GetStatBonus(BonusType.AllUpgradeCost));
-        //return Math.Ceiling(a);
-        return 0;
+        double num = (double)Mathf.Min(25, 3 + iLevel) * System.Math.Pow((double)1.074f, iLevel);
+        return (double)System.Math.Ceiling(num);
     }
 
 }

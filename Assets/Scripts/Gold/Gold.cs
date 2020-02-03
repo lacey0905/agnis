@@ -17,7 +17,7 @@ public class Gold : MonoBehaviour
     public void DoWallet()
     {
         DataController.instance.PlayerGold = this.Money;
-        GoldController.instance.DrawGold();
+
     }
 
 }

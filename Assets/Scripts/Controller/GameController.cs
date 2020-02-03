@@ -15,20 +15,28 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        
+
+
+        // 입력 받음
         if(Input.GetMouseButtonDown(0))
         {
 
 
-
-
-
         }
-
-
 
     }
 
+    private void Start()
+    {
+        // 게임 시작
+        int stage = DataController.instance.CurrentStage;
+        StageController.instance.MonsterSpawn(stage);
+    }
+
+    public void Attack()
+    {
+        PlayerController.instance.DoAttack(Vector3.zero);
+    }
 
 
 }

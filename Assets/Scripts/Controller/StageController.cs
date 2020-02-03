@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageController : MonoBehaviour
 {
 
-    public static StageController instance; 
+    public static StageController instance;
+
+
+    public Text HP;
+
 
     private void Awake()
     {
@@ -16,17 +21,25 @@ public class StageController : MonoBehaviour
 
     public void MonsterSpawn(int stage)
     {
+        if(WaveComplete)
+        {
+            // 보스
+        }
+        else
+        {
+            string newName = "테스트";
+            double newHp = this.GetStageBaseHP(stage);
+            fieldMonster = new Monster(newHp, newName);
 
-        // 보스 인지 아닌지 체크
-
-        string newName = "테스트";
-        double newHp = this.GetStageBaseHP(stage);
-        fieldMonster = new Monster(newHp, newName);
+            HP.text = fieldMonster.CurrentHP.ToString();
+        }
     }
 
     public void MonsterDamage(double damage)
     {
         fieldMonster.Damage(damage);
+
+        HP.text = fieldMonster.CurrentHP.ToString();
 
         if (fieldMonster.IsDead)
         {
@@ -52,43 +65,56 @@ public class StageController : MonoBehaviour
             DataController.instance.CurrentWave = newWave;
 
             MonsterSpawn(stage);
-            MonsterController.instance.SpawnFieldMonster();
+
+            //MonsterController.instance.SpawnFieldMonster();
 
         }
     }
 
     public void MoveToNextStage()
     {
+        int currentStage = DataController.instance.CurrentStage;
+        if (currentStage % 5 == 0)
+        {
+            //5의 배수 탄 일때
 
-        // 5탄마다 체크해서 테마 넘기기
-
-        DataController.instance.CurrentWave = 1;
-        DataController.instance.CurrentStage = DataController.instance.CurrentStage + 1;
-        MonsterSpawn(DataController.instance.CurrentStage);
+        }
+        else
+        {
+            DataController.instance.CurrentWave = 1;
+            DataController.instance.CurrentStage = DataController.instance.CurrentStage + 1;
+            MonsterSpawn(DataController.instance.CurrentStage);
+        }
     }
 
     public bool WaveComplete
     {
         get
         {
-            return true;
-            //return this.killsInWave >= this.GetNumOfEnemiesInWave();
+            return DataController.instance.CurrentWave >= 10;
         }
     }
 
 
     public double GetStageBaseHP(int stage)
     {
-        return 0;
-        //return (double)ServerVarsModel.monsterHPMultiplier * Math.Pow((double)ServerVarsModel.monsterHPBase1, (double)Math.Min((float)stage, ServerVarsModel.monsterHPLevelOff)) * Math.Pow((double)ServerVarsModel.monsterHPBase2, (double)Math.Max((float)stage - ServerVarsModel.monsterHPLevelOff, 0f));
+        double hp = (double)18.5f * System.Math.Pow((double)1.57f, (double)System.Math.Min((float) stage, 156f)) * System.Math.Pow
+            ((double)1.17f, (double)System.Math.Max((float)stage - 156f, 0f));
+        return hp;
     }
 
     public double GetStageBaseGold(int stage)
     {
-        return 0;
-        //double stageBaseHP = this.GetStageBaseHP(stage);
-        //double num = stageBaseHP * (double)(ServerVarsModel.monsterGoldMultiplier + ServerVarsModel.monsterGoldSlope * Math.Min((float)this.currentStage, ServerVarsModel.noMoreMonsterGoldSlope));
-        //return num * Math.Ceiling(1.0 + PlayerModel.instance.GetStatBonus(BonusType.GoldAll));
+        int currentStage = DataController.instance.CurrentStage;
+        double stageBaseHP = this.GetStageBaseHP(stage);
+        double num = stageBaseHP * (double)(0.02f + 0.00045f * System.Math.Min((float)currentStage, 150f));
+
+        if (num <= 5.0)
+        {
+            num = (int)System.Math.Round(num);
+        }
+
+        return num * System.Math.Ceiling(1.0 + 0f);
     }
 
 }
