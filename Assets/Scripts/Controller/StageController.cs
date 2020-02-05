@@ -24,6 +24,11 @@ public class StageController : MonoBehaviour
         if(WaveComplete)
         {
             // 보스
+            string newName = "테스트";
+            double newHp = this.GetStageBaseHP(stage);
+            fieldMonster = new Monster(newHp, newName);
+
+            HP.text = fieldMonster.CurrentHP.ToString();
         }
         else
         {
@@ -37,6 +42,7 @@ public class StageController : MonoBehaviour
 
     public void MonsterDamage(double damage)
     {
+        
         fieldMonster.Damage(damage);
 
         HP.text = fieldMonster.CurrentHP.ToString();
@@ -50,16 +56,16 @@ public class StageController : MonoBehaviour
 
     public void MonsterDeath()
     {
+        int stage = DataController.instance.CurrentStage;
 
         if (WaveComplete)
         {
-            MoveToNextStage();
+            MoveToNextStage(stage);
         }
         else
         {
-            int stage = DataController.instance.CurrentStage;
+            
             int newWave = DataController.instance.CurrentWave + 1;
-
 
             GoldController.instance.SpawnGold(GetStageBaseGold(stage));
             DataController.instance.CurrentWave = newWave;
@@ -71,10 +77,9 @@ public class StageController : MonoBehaviour
         }
     }
 
-    public void MoveToNextStage()
+    public void MoveToNextStage(int stage)
     {
-        int currentStage = DataController.instance.CurrentStage;
-        if (currentStage % 5 == 0)
+        if (stage % 5 == 0)
         {
             //5의 배수 탄 일때
 
@@ -82,7 +87,7 @@ public class StageController : MonoBehaviour
         else
         {
             DataController.instance.CurrentWave = 1;
-            DataController.instance.CurrentStage = DataController.instance.CurrentStage + 1;
+            DataController.instance.CurrentStage = stage + 1;
             MonsterSpawn(DataController.instance.CurrentStage);
         }
     }
