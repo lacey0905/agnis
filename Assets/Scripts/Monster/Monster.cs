@@ -30,7 +30,4 @@ public class Monster
         if (CurrentHP <= 0d) CurrentHP = 0d;
     }
 
-
-
-
 }
