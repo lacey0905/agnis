@@ -16,7 +16,7 @@ public class GameUIController : MonoBehaviour
 
     public void PlayerLevelUp()
     {
-        PlayerController.instance.PlayerLevelUp(LevelUpMultiple);
+        PlayerController.instance.PlayerLevelUp(1);
     }
 
 

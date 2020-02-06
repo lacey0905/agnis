@@ -113,12 +113,10 @@ public class StageController : MonoBehaviour
         int currentStage = DataController.instance.CurrentStage;
         double stageBaseHP = this.GetStageBaseHP(stage);
         double num = stageBaseHP * (double)(0.02f + 0.00045f * System.Math.Min((float)currentStage, 150f));
-
         if (num <= 5.0)
         {
             num = (int)System.Math.Round(num);
         }
-
         return num * System.Math.Ceiling(1.0 + 0f);
     }
 

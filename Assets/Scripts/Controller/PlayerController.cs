@@ -16,20 +16,28 @@ public class PlayerController : MonoBehaviour
     public void DoAttack(Vector3 touchPosition)
     {
         double currentDamage = this.GetAttackDamageByLevel(DataController.instance.PlayerLevel);
-        StageController.instance.MonsterDamage(currentDamage * 10d);
+        StageController.instance.MonsterDamage(currentDamage);
     }
 
 
     public void PlayerLevelUp(int iLevel)
     {
-        double cost = GetUpgradeCostByLevel(iLevel);
+        // 현재 레벨
+        int currentLV = DataController.instance.PlayerLevel;
+        // 업그레이드 가격
+        double cost = GetUpgradeCostByLevel(currentLV);
+        double nextCost = GetUpgradeCostByLevel(currentLV + 1);
+        // 업그레이드 한 데미지
+        double damage = GetAttackDamageByLevel(currentLV + 1);
+        // 내 골드
         double myGold = DataController.instance.PlayerGold;
         if(myGold >= cost)
         {
-            DataController.instance.PlayerLevel += iLevel;
-            DataController.instance.PlayerGold -= GetUpgradeCostByLevel(iLevel);
+            print("UPGRADE!");
+            DataController.instance.SetPlayerLevelUp(currentLV + 1, damage, nextCost);
+            DataController.instance.PlayerGold -= cost;
         }
-    }
+    }  
 
     public void UpdatePlayerStats(bool iNeedToCallDelegate = true)
     {
@@ -38,8 +46,7 @@ public class PlayerController : MonoBehaviour
         //    this.nextUpgradeCost = this.GetUpgradeCostByLevel(this.playerLevel);
     }
 
-    // 레벨업 할 때 얻는 데미지
-    private double GetAttackDamageByLevel(int iLevel)
+    public double GetAttackDamageByLevel(int iLevel)
     {
         return (double)iLevel * System.Math.Pow((double)1.05f, (double)iLevel);
     }

@@ -27,11 +27,14 @@ public class DataController : MonoBehaviour
     }
     public int PlayerLevel {
         get { return playerLevel; }
-        set
-        {
-            playerLevel = value;
-            //level.text = "LV : " + playerLevel.ToString();
-        }
+    }
+
+    public void SetPlayerLevelUp(int iLevel, double damage, double cost)
+    {
+        playerLevel = iLevel;
+        level.text = "Cost : " + cost.ToString() + "\n";
+        level.text += "DMG : " + damage.ToString() + "\n";
+        level.text += "LV : " + playerLevel.ToString() + " +1";
     }
 
     public int CurrentWave {
@@ -50,13 +53,12 @@ public class DataController : MonoBehaviour
             stage.text = "Stage : " + currentStage.ToString();
         }
     }
-
     private void Awake()
     {
         DataController.instance = this;
 
-        PlayerGold = 0d;
-        PlayerLevel = 1;
+        PlayerGold = 3000d;
+        playerLevel = 1;
         CurrentWave = 1;
         CurrentStage = 1;
     }

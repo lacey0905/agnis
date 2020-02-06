@@ -38,5 +38,10 @@ public class GameController : MonoBehaviour
         PlayerController.instance.DoAttack(Vector3.zero);
     }
 
+    public void PlayerLevelUp()
+    {
+        PlayerController.instance.PlayerLevelUp(1);
+    }
+
 
 }

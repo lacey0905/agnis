@@ -650,7 +650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 878401270}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &215139283
 MonoBehaviour:
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: {fileID: 1063715044}
-  level: {fileID: 0}
+  level: {fileID: 1751245993}
   wave: {fileID: 449731286}
   stage: {fileID: 135030548}
 --- !u!1 &226942695
@@ -1627,7 +1627,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 670609845}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1235991536}
+        m_MethodName: PlayerLevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &670609845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2078,8 +2089,8 @@ Transform:
   m_Children:
   - {fileID: 1235991535}
   - {fileID: 640707869}
-  - {fileID: 1872643742}
   - {fileID: 215139282}
+  - {fileID: 1872643742}
   - {fileID: 1211438746}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -4099,7 +4110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 878401270}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1872643743
 MonoBehaviour:
